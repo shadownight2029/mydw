@@ -1,1 +1,18 @@
-awfawfawgawga
+            List<Models.Home.ViewModel> model = new List<Models.Home.ViewModel>();
+
+            string filePath = Url.Content(Path.Combine(_hostingEnvironment.WebRootPath, "data.json"));
+
+            using (StreamReader file = System.IO.File.OpenText(filePath))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                JArray o2 = (JArray)JToken.ReadFrom(reader);
+                model = o2.ToObject<List<Models.Home.ViewModel>>();
+                //foreach (var i in o2)
+                //{
+                //    model._id = i["_id"].ToString();
+                //    model.
+                //}
+                
+            }
+
+            return View(model);
